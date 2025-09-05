@@ -1,0 +1,2243 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iman Jibril Foundation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --font-family: Arial, sans-serif;
+        --primary-color: #d0dd94;
+        --secondary-color: #12550f;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        font-family: var(--font-family);
+      }
+
+      .navbar {
+        position: absolute;
+        top: -60;
+        left: -40;
+        width: 100%;
+        display: flex;
+        z-index: 10;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        z-index: 30;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 250px;
+        width: auto; /* Maintain aspect ratio */
+        /* Increase brightness and contrast */
+        transition: filter 0.3s ease; /* Smooth transition for interactive effect */
+      }
+
+      .logo .tagline {
+        margin-left: 10px;
+        color: var(--primary-color);
+        font-size: 1rem;
+      }
+
+      .nav-buttons {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .nav-buttons .btn {
+        margin: 15px;
+        padding: 15px 50px;
+        border-radius: 30px;
+        border: 1px solid var(--primary-color);
+        background: transparent;
+        color: var(--primary-color);
+        font-weight: bold;
+        cursor: pointer;
+        transition: opacity 0.3s;
+        flex: 1 1 auto;
+        text-align: center;
+      }
+      .nav-buttons .btn:hover {
+        opacity: 0.8;
+        background: var(--primary-color);
+        color: var(--secondary-color);
+      }
+      .nav-buttons .donate {
+        background: var(--primary-color);
+        color: #12550f;
+      }
+      .nav-buttons .watch-more {
+        background: var(--secondary-color);
+        color: #9ba84e;
+      }
+
+      .hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .slideshow {
+        padding: 200px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 8s ease-in-out; /* 8s fade */
+      }
+
+      .slide.active {
+        opacity: 1;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 20;
+        height: 110%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: var(--primary-color);
+        padding: 10px 20px;
+      }
+
+      /*  H1 transition states */
+      .hero-content h1 {
+        margin-bottom: 50px;
+        font-family: Tempus Sans ITC;
+        font-size: 2.7rem;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      }
+
+      .hero-content.h1-visible h1 {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .hero-content.h1-hidden h1 {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      /*JOIN US BUTTON*/
+      .hero-content .btn {
+        padding: 20px 35px;
+        border: 1px solid var(--primary-color);
+        background: transparent;
+        color: var(--primary-color);
+        font-size: 1rem;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .hero-content .btn:hover {
+        background: var(--primary-color);
+        color: #12550f;
+      }
+      /* MAP PAGE*/
+      .content-image img {
+        display: block;
+        width: 100%;
+        height: 25rem;
+        opacity: 10;
+      }
+      /* About Us */
+      .aboutus-section {
+        padding: 30px 0;
+        background: #f9fafb;
+      }
+      .aboutus-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 1200px;
+        margin: 10px auto;
+        gap: 40px;
+        padding: 10px 24px;
+        width: 100%;
+      }
+      .aboutus-image img {
+        width: 320px;
+        max-width: 70vw;
+        height: 50%;
+        border-radius: 18px;
+        box-shadow: 0 2px 18px rgba(18, 85, 15, 0.09);
+        object-fit: contain;
+        background: #e6f9e6;
+        display: block;
+      }
+      .aboutus-text {
+        flex: 1 1 0;
+        color: #12550f;
+        font-size: 1.5rem;
+        line-height: 1.7;
+        min-width: 320px;
+        /* Remove margin-right */
+        text-align: justify; /* <--- This makes the text spread out nicely! */
+      }
+      .aboutus-text h2 {
+        color: #12550f;
+        margin-bottom: 0;
+        margin-top: -40px;
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: 0.02em;
+        text-align: center;
+      }
+      @media (max-width: 900px) {
+        .aboutus-container {
+          gap: 20px;
+          padding: 8px 10px;
+        }
+        .aboutus-image img {
+          width: 140px;
+          max-width: 46vw;
+        }
+        .aboutus-text h2 {
+          font-size: 2rem;
+          margin-top: 10px;
+        }
+        .aboutus-text {
+          font-size: 1rem;
+          text-align: center;
+        }
+      }
+      @media (max-width: 700px) {
+        .aboutus-container {
+          flex-direction: column;
+          text-align: center;
+          gap: 24px;
+          padding: 0 6vw;
+          max-width: 99vw;
+        }
+        .aboutus-image img {
+          width: 180vw;
+          max-width: 98vw;
+          height: 260px;
+          margin: 0 auto;
+        }
+        .aboutus-text {
+          min-width: unset;
+          text-align: left;
+        }
+      }
+      .aboutus-bar {
+        display: block;
+        margin: 0 auto 20px auto;
+        width: 80px;
+        height: 2px;
+        border-radius: 4px;
+        background: #12550f;
+        /* You can adjust the colors above as you wish! */
+      }
+      .aboutus-barr {
+        display: block;
+        margin: 60px auto 30px auto;
+        width: 320px;
+        height: 2px;
+        border-radius: 4px;
+        background: white;
+        /* You can adjust the colors above as you wish! */
+      }
+      @media (max-width: 700px) {
+        .aboutus-bar {
+          width: 50px;
+          height: 5px;
+          margin-bottom: 18px;
+        }
+      }
+
+      /*Mission*/
+      /* About Cards Modern Style */
+      .about-card {
+        background: #e3f0e6 !important;
+        border-radius: 22px !important;
+        box-shadow: 0 2px 12px rgba(18, 85, 15, 0.07) !important;
+        border: 1.3px solid #d7e6bb !important;
+        min-width: 250px;
+        max-width: 350px;
+        width: 100%;
+        height: 230px;
+        padding: 40px 30px 32px 30px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: box-shadow 0.18s, transform 0.13s;
+      }
+      .about-card:hover {
+        box-shadow: 0 6px 22px rgba(67, 206, 162, 0.13) !important;
+        transform: translateY(-2px) scale(1.025);
+      }
+      .about-card i {
+        color: #135619 !important;
+        font-size: 2.6rem !important;
+        margin-bottom: 18px;
+      }
+      .about-card h5 {
+        color: #135619 !important;
+        font-weight: 700 !important;
+        font-size: 1.25rem !important;
+        margin-bottom: 10px !important;
+        text-align: center !important;
+      }
+      .about-card p {
+        color: #1b3d23 !important;
+        font-size: 1.08rem !important;
+        line-height: 1.4 !important;
+        text-align: center !important;
+      }
+      /* FLEX ROW ON DESKTOP, COLUMN ON MOBILE */
+      .about-row {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        gap: 36px;
+      }
+      @media (max-width: 1000px) {
+        .about-card {
+          min-width: 210px;
+          max-width: 99vw;
+          padding: 28px 8vw 22px 8vw;
+        }
+        .about-card h5 {
+          font-size: 1.09rem;
+        }
+        .about-card i {
+          font-size: 2.2rem;
+        }
+      }
+      @media (max-width: 800px) {
+        .about-row {
+          flex-direction: column !important;
+          align-items: center !important;
+          gap: 18px !important;
+        }
+        .about-card {
+          min-width: 76vw !important;
+          padding: 30px 12vw 22px 12vw !important;
+          max-width: 96vw;
+        }
+        .col-12,
+        .col-md-4 {
+          max-width: 100%;
+          flex: 0 0 100%;
+        }
+      }
+
+      /* Slider Section */
+      /* Slider Section */
+      .slider-section {
+        margin: 44px 0 32px 0;
+        width: 100vw;
+        overflow-x: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .slider-title {
+        color: #12550f;
+        margin-bottom: 10px;
+        margin-top: 0;
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: 0.02em;
+        text-align: center;
+      }
+
+      .slider-viewport {
+        width: 70%;
+        max-width: 80vw;
+        height: 40vw;
+        border-radius: 18px;
+        box-shadow: 0 2px 18px rgba(18, 85, 15, 0.09);
+        background: white;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin: 0 auto 16px auto;
+        padding-right: 10%; /* Adjusted to show part of the next image */
+      }
+
+      .slider-track {
+        display: flex;
+        transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
+        will-change: transform;
+        height: 100%;
+      }
+
+      .slider-slide {
+        flex: 0 0 94vw; /* Ensures each slide takes up 94% of the width */
+        max-width: 850px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 470px;
+        position: relative;
+      }
+
+      .slider-slide img {
+        width: 100%;
+        margin-bottom: -70px;
+        margin-left: 5px;
+        height: 520px;
+        object-fit: cover;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px rgba(18, 85, 15, 0.1);
+        background: #e6f9e6;
+        -webkit-user-drag: none;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #fff;
+        border: 2px solid #43cea2;
+        color: #185a9d;
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(18, 85, 15, 0.1);
+        opacity: 0.88;
+        z-index: 10;
+        transition: background 0.18s, color 0.18s;
+        user-select: none;
+      }
+
+      .slider-arrow:hover,
+      .slider-arrow:focus {
+        background: #43cea2;
+        color: #fff;
+        border-color: #185a9d;
+        outline: none;
+      }
+
+      .slider-arrow.left {
+        left: 12px;
+      }
+      .slider-arrow.right {
+        right: 12px;
+      }
+      .slider-arrow[disabled] {
+        opacity: 0.16;
+        pointer-events: none;
+      }
+
+      .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 8px;
+      }
+
+      .slider-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #e0e5e1;
+        border: 2px solid #43cea2;
+        cursor: pointer;
+        transition: background 0.18s, border 0.18s;
+      }
+
+      .slider-dot.active {
+        background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+        border: 2px solid #185a9d;
+      }
+
+      /* Mobile Adjustments */
+      @media (max-width: 700px) {
+        .slider-title {
+          font-size: 2.5rem;
+          margin-left: 18px;
+          margin-bottom: 13px;
+        }
+
+        .slider-viewport {
+          height: 400px;
+          max-width: 98vw;
+          min-width: 98vw;
+          border-radius: 12px;
+          padding-right: 10%; /* Show part of next image on mobile */
+        }
+
+        .slider-slide,
+        .slider-slide img {
+          height: 350px;
+          min-width: 40vw;
+          border-radius: 12px;
+        }
+
+        .slider-arrow {
+          width: 32px;
+          height: 32px;
+          font-size: 1.28rem;
+        }
+      }
+
+      /*MAP*/
+      .service-areas-section {
+        padding: 38px 0 6px 0;
+        text-align: center;
+      }
+      .service-title {
+        color: #185a09;
+        font-size: 2.35rem;
+        font-weight: bold;
+        letter-spacing: 0.01em;
+        font-family: var(--font-family);
+        margin-bottom: 7px;
+        margin-top: 12px;
+      }
+      .service-title-underline {
+        display: block;
+        margin: 0 auto 16px auto;
+        width: 54px;
+        height: 3.4px;
+        background: #185a09;
+        border-radius: 6px;
+      }
+      .service-map-box {
+        max-width: 94vw;
+        width: 92vw;
+        margin: 0 auto;
+        border-radius: 18px;
+        box-shadow: 0 4px 18px rgba(60, 153, 67, 0.09);
+        padding: 28px 0 22px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .service-map-img {
+        width: 94%;
+        max-width: 950px;
+        border-radius: 14px;
+        margin: 0 auto 0 auto;
+        display: block;
+        box-shadow: 0 3px 14px rgba(18, 85, 15, 0.07);
+        background: #e6f9e6;
+      }
+      .service-caption {
+        margin-top: 8px;
+        color: #3c3c3c;
+        font-size: 0.83rem;
+        letter-spacing: 0.01em;
+        font-family: "Segoe UI", Arial, sans-serif;
+        text-align: center;
+        max-width: 95vw;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.85;
+      }
+      @media (max-width: 900px) {
+        .service-map-box {
+          padding: 11px 0 13px 0;
+        }
+        .service-map-img {
+          max-width: 99vw;
+        }
+      }
+      @media (max-width: 520px) {
+        .service-title {
+          font-size: 1rem;
+        }
+        .service-map-box {
+          padding: 4vw 0;
+        }
+        .service-caption {
+          font-size: 0.78rem;
+        }
+      }
+
+      /*Footer*/
+      .footer-dark {
+        background-color: #687233;
+        color: #eee5db;
+        padding: 60px 10px;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .footer-dark a {
+        color: #eee5db;
+        text-decoration: none;
+      }
+
+      .footer-dark a:hover {
+        text-decoration: underline;
+      }
+
+      .footer-logo {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .footer-logo img {
+        max-height: 250px;
+        margin-top: -100px;
+      }
+
+      .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 100px;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 30px 70px;
+        margin-top: -50px;
+      }
+
+      .footer-column {
+        flex: 1;
+        min-width: 250px;
+      }
+
+      .footer-column h4 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #f3efe8;
+        text-align: left;
+      }
+
+      .footer-column p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+        text-align: left;
+      }
+
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 8px;
+        text-align: left;
+      }
+
+      .newsletter-form {
+        margin-top: 10px;
+      }
+
+      .newsletter-form input {
+        padding: 10px 15px;
+        width: 100%;
+        max-width: 250px;
+        border: 1.3px solid #fff;
+        background-color: #687233;
+        border-radius: 25px;
+        color: #852929;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+      .newsletter-form input::placeholder {
+        color: #fff;
+        opacity: 0.8;
+      }
+
+      .newsletter-form button {
+        padding: 12px 30px;
+        background: #fffdf3;
+        color: #12550f;
+        border: none;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 250px;
+        transition: background 0.3s ease;
+      }
+
+      .newsletter-form button:hover {
+        background: #f1efe8;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .footer-container {
+          flex-direction: column;
+          align-items: relative;
+          text-align: left;
+        }
+        .footer-column {
+          margin-left: -20px;
+        }
+
+        .newsletter-form input,
+        .newsletter-form button {
+          width: 100%;
+        }
+        /*thin horizontal line*/
+        .white-line {
+          border: none;
+          background-color: white;
+          width: 70px;
+          margin: 40px 0;
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .footer-container {
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .newsletter-form input {
+          width: 100%;
+        }
+
+        .newsletter-form button {
+          width: 100%;
+        }
+      }
+
+      /* Responsive breakpoints */
+      @media (max-width: 768px) {
+        .navbar {
+          justify-content: center;
+          padding: 10px 20px;
+        }
+        .logo {
+          margin-bottom: 10px;
+        }
+        .nav-buttons {
+          justify-content: center;
+        }
+        .nav-buttons .btn {
+          padding: 8px 16px;
+          font-size: 0.9rem;
+        }
+        .donate {
+          width: 130;
+        }
+        .hero-content h1 {
+          font-size: 3rem;
+        }
+        .hero-content .btn {
+          padding: 12px 24px;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero-content h1 {
+          font-size: 2.9rem;
+        }
+        .hero-content .btn {
+          font-size: 0.8rem;
+          padding: 10px 20px;
+        }
+      }
+      /*scroll up About us*/
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .navbar {
+          justify-content: center;
+          padding: 10px 20px;
+        }
+        .logo {
+          margin-bottom: 10px;
+        }
+        .nav-buttons {
+          justify-content: center;
+        }
+        .hero-content h1 {
+          font-size: 2.3rem;
+        }
+        .hero-content .watch-more {
+          padding: 18px 30px;
+        }
+        .features {
+          flex-direction: column;
+        }
+        .feature-card {
+          flex: 1 1 100%;
+        }
+      }
+      /*SECTION WITH MULTIPLE SLIDES*/
+      /* TWO‐COLUMN LAYOUT */
+      .content {
+        display: flex;
+        max-width: 1200px;
+        min-height: 100vh;
+        margin: 10px auto;
+      }
+
+      /* LEFT PANEL */
+      .content-text {
+        flex: 1;
+        padding: 20px;
+        margin-top: 110px;
+      }
+      .content-text h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #12550f;
+        text-align: center;
+        letter-spacing: 0.02em;
+      }
+      .content-text p {
+        flex: 1 1 0;
+        color: #12550f;
+        font-size: 1.5rem;
+        line-height: 1.7;
+        min-width: 320px;
+        /* Remove margin-right */
+        text-align: justify;
+      }
+
+      /* RIGHT PANEL */
+      .content-image {
+        flex: 1;
+        position: relative;
+      }
+      .program-list {
+        list-style: none;
+        position: absolute;
+        top: 50%;
+        right: -50;
+        width: 100%;
+        transform: translateY(-50%);
+        margin-right: 0;
+      }
+
+      /* THE “STAIR-STEP” BARS */
+      .program-item {
+        --indent: 0px;
+        position: relative;
+        margin-bottom: 8px;
+        margin-left: var(--indent);
+        padding: 25px 20px;
+        color: #fff;
+        font-size: 1.5rem;
+      }
+
+      /* ICON OUTSIDE BAR */
+      .program-item i {
+        top: 50%;
+        left: 300px;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        color: #f1efe8;
+      }
+
+      /* LABEL TEXT */
+      .program-item .label {
+        margin-left: 10px;
+      }
+
+      /* INDENT STEP FOR EACH ITEM */
+      .program-item:nth-child(1) {
+        --indent: 0px;
+      }
+      .program-item:nth-child(2) {
+        --indent: 100px;
+      }
+      .program-item:nth-child(3) {
+        --indent: 150px;
+      }
+      .program-item:nth-child(4) {
+        --indent: 250px;
+      }
+      .program-item:nth-child(5) {
+        --indent: 150px;
+      }
+      .program-item:nth-child(6) {
+        --indent: 100px;
+      }
+      .program-item:nth-child(7) {
+        --indent: 0px;
+      }
+
+      /* BAR COLORS */
+      .feeding {
+        background: #377a4a;
+      } /* Feeding Programme */
+      .water {
+        background: #558ca6;
+      } /* Water Supply Solutions */
+      .women {
+        background: #c74e80ff;
+      } /* Women Empowerment */
+      .education {
+        background: #e09a29;
+      } /* Education */
+      .vocational {
+        background: #1d8a70;
+      } /* Vocational Training */
+      .agricultural {
+        background: #377a4a;
+      } /* Agricultural Sustainability */
+      .health {
+        background: #791815ff;
+      } /* Health Care */
+
+      /* MOBILE: STACK EVERYTHING */
+      @media (max-width: 768px) {
+        .content {
+          flex-direction: column;
+        }
+        .program-list {
+          position: static;
+          transform: none;
+          padding: 20px 0;
+        }
+        .program-item {
+          margin-left: 10;
+        }
+        .program-item i {
+          position: relative;
+          top: auto;
+          left: auto;
+          transform: none;
+          margin-right: 12px;
+        }
+
+        .content-text {
+          margin-top: 10px;
+        }
+        .content-text p {
+          text-align: 100%;
+          max-width: 100%;
+          font-size: 1rem;
+
+          font-size: relative;
+        }
+      }
+
+      /*Slide for multiple colors*/
+      .vertical-carousel {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        margin: auto;
+        overflow: hidden;
+        background-color: #fff;
+        touch-action: none; /* Disables default touch actions to control scrolling */
+      }
+
+      .carousel-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        transition: transform 1s ease;
+      }
+
+      .carousel-slide {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        flex-shrink: 0;
+        transition: background-color 1s ease;
+      }
+
+      .carousel-slide:nth-child(1) {
+        background-color: #377a4a; /* Slide 1: Green */
+      }
+
+      .carousel-slide:nth-child(2) {
+        background-color: #558ca6; /* Slide 2: Blue */
+      }
+
+      .carousel-slide:nth-child(3) {
+        background-color: #d8afc0ff; /* Slide 3: Dark Brown */
+      }
+
+      .carousel-slide:nth-child(4) {
+        background-color: #e09a29; /* Slide 4: Yellow */
+      }
+
+      .carousel-slide:nth-child(5) {
+        background-color: #1d8a70; /* Slide 5: Teal */
+      }
+
+      .carousel-slide:nth-child(6) {
+        background-color: #377a4a; /* Slide 6: Green */
+      }
+
+      .carousel-slide:nth-child(7) {
+        background-color: #12550f; /* Slide 7: Dark Green */
+      }
+
+      .carousel-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 50px;
+      }
+
+      .carousel-image {
+        width: 50%;
+        padding-right: 10px;
+        margin-top: 20px;
+        height: 400px;
+      }
+
+      .carousel-image img,
+      .carousel-image video {
+        width: 80%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-left: 30px;
+      }
+
+      .carousel-text {
+        width: 50%;
+        color: white;
+        padding: 20px;
+        border-radius: 0px;
+        margin-left: 10px;
+      }
+
+      .carousel-text h2 {
+        color: white;
+        margin-bottom: 0;
+        margin-top: -70px;
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: 0.02em;
+        text-align: center;
+      }
+
+      .carousel-text p {
+        flex: 1 1 0;
+        color: white;
+        font-size: 1.5rem;
+        line-height: 1.7;
+        min-width: 320px;
+        /* Remove margin-right */
+        text-align: justify;
+        margin-top: 50px;
+      }
+
+      /* Draggable cursor */
+      .carousel-container {
+        cursor: grab;
+      }
+
+      .carousel-container.dragging {
+        cursor: grabbing;
+        transition: none !important;
+      }
+
+      /* Dots styling */
+      .carousel-dots {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+      }
+
+      .carousel-dots .dot {
+        height: 18px;
+        width: 18px;
+        margin: 0 5px;
+        background-color: #dcdcdc; /* Light Gray for inactive dots */
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s ease;
+      }
+
+      .carousel-dots .dot.active {
+        background-color: #ff6b6b; /* Red for active dot */
+        transform: scale(1.5);
+      }
+
+      .carousel-dots .dot:hover {
+        background-color: #ff3b3b;
+        transform: scale(1.6);
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        .carousel-content {
+          flex-direction: column-reverse;
+          gap: 14px;
+          padding: 20px;
+          margin-top: 20px;
+        }
+        fa.fas {
+          font-size: 0.5rem;
+        }
+
+        .carousel-image {
+          width: 100%;
+          margin-left: 5px;
+          height: 280px;
+          margin-bottom: 15px;
+        }
+
+        .carousel-text {
+          width: 100%;
+          margin-left: 0;
+          padding: 10px;
+        }
+
+        .carousel-text h2 {
+          font-size: 1.3rem;
+        }
+
+        .carousel-text p {
+          font-size: 1rem;
+          margin: 0;
+          line-height: 1.6;
+        }
+        .carousel-image img,
+        .carousel-image video {
+          width: 90%;
+        }
+      }
+      /* DONATE CTA */
+      .donate-cta {
+        padding: 10px 36px 50px;
+        background: #f4f6f2;
+        margin-top: 10px;
+      }
+      .donate-cta .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .cta-title {
+        color: #12550f;
+        margin-bottom: 0;
+        margin-top: 10px;
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: 0.02em;
+        text-align: center;
+      }
+      .cta-underline,
+      .partners-underline {
+        display: block;
+        width: 64px;
+        height: 4px;
+        border-radius: 6px;
+        background: var(--secondary-color, #12550f);
+        margin: 10px auto 18px;
+      }
+      .cta-sub {
+        opacity: 0.8;
+        margin: 6px 0 10px;
+      }
+
+      .accept-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px 22px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 12px;
+      }
+      .accept-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        background: #fff;
+        color: var(--secondary-color, #12550f);
+        border: 1px solid rgba(18, 85, 15, 0.12);
+        border-radius: 999px;
+        box-shadow: 0 6px 18px rgba(18, 85, 15, 0.06);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          border-color 0.15s ease;
+      }
+      .accept-chip:hover {
+        transform: translateY(-2px);
+        border-color: rgba(18, 85, 15, 0.2);
+        box-shadow: 0 12px 28px rgba(18, 85, 15, 0.12);
+      }
+      .chip-icon {
+        width: 26px;
+        height: 26px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: #eef6ee;
+        color: var(--secondary-color, #12550f);
+        box-shadow: inset 0 0 0 1px rgba(18, 85, 15, 0.08);
+        font-size: 0.95rem;
+        line-height: 1;
+      }
+
+      /* Partners */
+      .partners {
+        padding: 50px 16px;
+        background: #fff;
+      }
+      .partners .wrap {
+        max-width: 1200px;
+        margin: 10px auto;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .partners-title {
+        color: #12550f;
+        margin-bottom: 0;
+        margin-top: -40px;
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: 0.02em;
+        text-align: center;
+      }
+      .partner-logos {
+        margin-top: 18px;
+        display: grid;
+        gap: 22px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: center;
+        justify-items: center;
+      }
+      .partner-card {
+        width: 100%;
+        height: 90px;
+        display: grid;
+        place-items: center;
+        background: #fff;
+        border: 1px solid rgba(18, 85, 15, 0.12);
+        border-radius: 14px;
+        box-shadow: 0 6px 18px rgba(18, 85, 15, 0.06);
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          border-color 0.15s ease, filter 0.15s ease;
+        padding: 12px;
+      }
+      .partner-card img {
+        max-height: 48px;
+        width: auto;
+        object-fit: contain;
+      }
+      .partner-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(18, 85, 15, 0.2);
+        box-shadow: 0 12px 28px rgba(18, 85, 15, 0.12);
+      }
+      .partner-card:hover img {
+        filter: none;
+        opacity: 1;
+      }
+      @media (max-width: 700px) {
+        .vertical-carousel .carousel-text i.fas,
+        .vertical-carousel .carousel-text i.fa {
+          font-size: 1.5rem !important;
+          margin-right: 10px !important;
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 1000px) {
+        .partner-logos {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 740px) {
+        .accept-list {
+          gap: 14px;
+        }
+        .partner-logos {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 460px) {
+        .accept-chip {
+          font-weight: 700;
+          padding: 10px 14px;
+        }
+        .chip-icon {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      /* DRAG-DOWN BADGE */
+      .drag-badge {
+        --bg: #f4f7ea; /* green background */
+        --ink: #12550f; /* light text */
+        --shadow: 0 10px 28px rgba(18, 85, 15, 0.22);
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        color: var(--ink);
+        background: var(--bg);
+        /* slightly organic rounded shape */
+        border-radius: 18px 16px 16px 18px / 20px 14px 14px 20px;
+        box-shadow: var(--shadow);
+        letter-spacing: 0.08em;
+        font-weight: 700;
+        user-select: none;
+      }
+
+      /* text */
+      .drag-label {
+        font-size: 1.5rem;
+      }
+
+      /* down-arrow column */
+      .drag-arrows {
+        display: grid;
+        grid-auto-flow: row;
+        gap: 2px;
+      }
+
+      .arrow {
+        width: 20px;
+        height: 20px;
+        stroke: var(--ink);
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+        opacity: 0.25;
+        transform: translateY(-2px);
+        animation: arrowPulse 1.2s infinite ease-in-out;
+      }
+
+      /* stagger for motion effect */
+      .arrow:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .arrow:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      .arrow:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      @keyframes arrowPulse {
+        0% {
+          opacity: 0.25;
+          transform: translateY(-4px);
+        }
+        40% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0.25;
+          transform: translateY(4px);
+        }
+      }
+
+      /* Optional: fix to top center as a hint */
+      /* .drag-badge { position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:50 } */
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="{% static 'images/imanJ.png' %}" alt="ImanJibril" />
+      </div>
+      <div class="nav-buttons">
+        <a href="{% url 'volunteer' %}"
+          ><button class="btn volunteer">VOLUNTEER</button></a
+        >
+        <a href="{% url 'donate' %}"
+          ><button class="btn donate">DONATE</button></a
+        >
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="btn btn-logout">Logout</a>
+        {% endif %}
+      </div>
+    </nav>
+    <header class="hero">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h1>Making the world a better place for all</h1>
+        {% if not request.user.is_authenticated %}
+        <a href="{% url 'signup' %}"
+          ><button class="btn watch-more">JOIN US</button></a
+        >
+        {% endif %}
+      </div>
+      <div class="slideshow">
+        <div
+          class="slide active"
+          style="background-image: url('{% static 'images/IMG9.jpg' %}')"
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url('{% static 'images/IMG7.jpg' %}')"
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url('{% static 'images/IMG8.jpg' %}')"
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url('{% static 'images/img4.jpg' %}')"
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url('{% static 'images/img2.jpeg' %}')"
+        ></div>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section class="aboutus-section" id="about">
+      <div class="aboutus-container">
+        <div class="aboutus-text">
+          <h2>About Us</h2>
+          <span class="aboutus-bar" aria-hidden="true"></span>
+          <p>
+            The Iman Jibril Charity Foundation was founded in 2022 by Mrs. Ikram
+            Ahmed in honor of her children, Iman and Jibril. What began as a
+            mother’s personal mission is now a continent-wide movement to
+            restore hope, dignity, and opportunity for underserved communities.
+            <br /><br />
+            From its roots in the Eastern Region of Ghana, the Foundation has
+            grown into a force for change building schools, clinics, and
+            programs that touch thousands of lives. Inspired by Ikram’s own
+            journey from refugee child to global entrepreneur, our work is a
+            living legacy of resilience and compassion. We don’t do charity as
+            usual. We build for generations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION CARDS -->
+    <section style="background: var(--paper); padding: 30px 16px 46px">
+      <div class="slider-title">Our Mission &amp; Vision</div>
+      <span class="aboutus-bar" aria-hidden="true"></span>
+
+      <div class="about-row">
+        <article class="about-card" aria-label="Our Mission">
+          <i class="fas fa-hands-helping" aria-hidden="true"></i>
+          <h5>Our Mission</h5>
+          <p>
+            Empowering communities through education, health, and sustainable
+            development.
+          </p>
+        </article>
+
+        <article class="about-card" aria-label="Recognized Impact">
+          <i class="fas fa-award" aria-hidden="true"></i>
+          <h5>Recognized Impact</h5>
+          <p>Awarded for outstanding service and community transformation.</p>
+        </article>
+
+        <article class="about-card" aria-label="Global Reach">
+          <i class="fas fa-globe" aria-hidden="true"></i>
+          <h5>Global Reach</h5>
+          <p>Serving diverse communities across Africa and beyond.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- HORIZONTAL GALLERY -->
+    <section class="slider-section" aria-label="Gallery">
+      <div class="slider-title">Gallery</div>
+      <span class="aboutus-bar" aria-hidden="true"></span>
+
+      <div class="slider-viewport" id="slider-viewport">
+        <button
+          class="slider-arrow left"
+          id="slider-prev"
+          aria-label="Previous slide"
+        >
+          &#8249;
+        </button>
+        <div class="slider-track" id="slider-track">
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/img13.jpg.' %}"
+              alt="Community outreach 1"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/IMG8.jpg' %}"
+              alt="Community outreach 2"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/IMG9.jpg' %}"
+              alt="Community outreach 3"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/img2.jpeg' %}"
+              alt="Community outreach 4"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/berber.jpg' %}"
+              alt="Community outreach 5"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/IMG7.jpg' %}"
+              alt="Community outreach 6"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/IMG10.jpg' %}"
+              alt="Community outreach 7"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/IMG15.jpg' %}"
+              alt="Community outreach 8"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/IMG14.jpg' %}"
+              alt="Community outreach 9"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/IMG16.jpg' %}"
+              alt="Community outreach 10"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/IMG11(1).jpg' %}"
+              alt="Community outreach 11"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/IMG19.jpg' %}"
+              alt="Community outreach 12"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/MOTHERCARE(1).jpg' %}"
+              alt="Mother care drive"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/MCD.jpg' %}"
+              alt="Mother care drive"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <button
+          class="slider-arrow right"
+          id="slider-next"
+          aria-label="Next slide"
+        >
+          &#8250;
+        </button>
+      </div>
+      <div
+        class="slider-dots"
+        id="slider-dots"
+        aria-label="Gallery slide navigation"
+      ></div>
+    </section>
+
+    <!-- PROGRAMMES -->
+    <section
+      class="content"
+      aria-label="All-round Community Development Programmes"
+    >
+      <div class="content-text">
+        <h1>All Round Community Development Programmes</h1>
+        <p>
+          By confronting today’s most urgent challenges, Iman Jibril Foundation
+          employs a comprehensive, multifaceted strategy to strengthen
+          communities in need. <br /><br />
+          This full-circle development programme is devoted to breaking the
+          persistent cycle of hunger, poverty and unemployment throughout Africa
+          and the world at large.
+        </p>
+      </div>
+
+      <div class="content-image">
+        <ul class="program-list" role="list">
+          <li class="program-item feeding">
+            <i class="fas fa-utensils" aria-hidden="true"></i
+            ><span class="label">Feeding Programme</span>
+          </li>
+          <li class="program-item water">
+            <i class="fas fa-water" aria-hidden="true"></i
+            ><span class="label">Partnership For Change</span>
+          </li>
+          <li class="program-item women">
+            <i class="fas fa-ribbon" aria-hidden="true"></i
+            ><span class="label">Women Empowerment</span>
+          </li>
+          <li class="program-item education">
+            <i class="fas fa-home" aria-hidden="true"></i
+            ><span class="label">Education</span>
+          </li>
+          <li class="program-item vocational">
+            <i class="fas fa-tools" aria-hidden="true"></i
+            ><span class="label">Vocational Training</span>
+          </li>
+          <li class="program-item agricultural">
+            <i class="fas fa-seedling" aria-hidden="true"></i
+            ><span class="label">Agricultural Sustainability</span>
+          </li>
+          <li class="program-item health">
+            <i class="fas fa-heart" aria-hidden="true"></i
+            ><span class="label">Health Care</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <!-- DRAG-DOWN SIGN -->
+      <div class="drag-badge" aria-label="Drag down">
+        <span class="drag-label">DRAG</span>
+
+        <!-- animated down arrows -->
+        <span class="drag-arrows" aria-hidden="true">
+          <svg class="arrow" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+          <svg class="arrow" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+          <svg class="arrow" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </span>
+      </div>
+    </section>
+    <!-- VERTICAL CAROUSEL -->
+    <section class="vertical-carousel" id="impact" aria-label="Impact Stories">
+      <div class="carousel-container" id="v-track">
+        <div class="carousel-slide">
+          <div class="carousel-content">
+            <div class="carousel-image">
+              <video class="carousel-video" autoplay muted loop playsinline>
+                <source
+                  src="{% static 'videos/FEEDING.mp4' %}"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="carousel-text" id="feeding">
+              <h2>
+                <i
+                  class="fas fa-utensils"
+                  aria-hidden="true"
+                  style="font-size: 2.5rem; margin-right: 20px"
+                ></i
+                ><span><u>Feeding Festival &amp; Birthday Drive</u></span>
+              </h2>
+              <p>
+                On Iman’s 1st birthday, over 800 children in Asuboi were fed,
+                given backpacks, supplies, and treated to haircuts and games; a
+                celebration of joy and dignity.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-content">
+            <div class="carousel-image">
+              <video class="carousel-video" autoplay muted loop playsinline>
+                <source src="{% static 'videos/imam.mp4' %}" type="video/mp4" />
+              </video>
+            </div>
+            <div class="carousel-text">
+              <h2>
+                <i
+                  class="fas fa-water"
+                  aria-hidden="true"
+                  style="font-size: 2.5rem; margin-right: 20px"
+                ></i
+                ><u>Partnership for Change</u>
+              </h2>
+              <p>
+                Through our partnership with Qatar Charity Ghana and JBC
+                Charity, we constructed a permanent facility offering education,
+                healthcare, and spiritual care for the community.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="carousel-content">
+            <div class="carousel-image">
+              <video class="carousel-video" autoplay muted loop playsinline>
+                <source
+                  src="{% static 'videos/IMAN2.mp4' %}"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="carousel-text">
+              <h2>
+                <i
+                  class="fas fa-ribbon"
+                  aria-hidden="true"
+                  style="font-size: 2.5rem; margin-right: 20px"
+                ></i
+                ><u>Women Empowerment</u>
+              </h2>
+              <p>
+                In collaboration with local health organizations, we have
+                provided free medical checkups, medicine, and health education
+                to underserved communities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONATE CTA -->
+    <section class="donate-cta" id="donate-cta">
+      <div class="wrap">
+        <h2 class="cta-title">You Can Change a Life Today</h2>
+        <span class="cta-underline" aria-hidden="true"></span>
+        <p class="cta-sub">We accept:</p>
+
+        <div class="accept-list" role="list">
+          <span class="accept-chip" role="listitem">
+            <span class="chip-icon" aria-hidden="true">✦</span>
+            Financial Donations (one-time or monthly)
+          </span>
+
+          <span class="accept-chip" role="listitem">
+            <span class="chip-icon" aria-hidden="true">✦</span>
+            In-Kind Support (school supplies, medical kits, hygiene items, tech)
+          </span>
+
+          <span class="accept-chip" role="listitem">
+            <span class="chip-icon" aria-hidden="true">✦</span>
+            Corporate Sponsorships
+          </span>
+
+          <span class="accept-chip" role="listitem">
+            <span class="chip-icon" aria-hidden="true">✦</span>
+            Partnerships in education, job creation, healthcare
+          </span>
+
+          <span class="accept-chip" role="listitem">
+            <span class="chip-icon" aria-hidden="true">✦</span>
+            Volunteers &amp; Advocates
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE AREAS -->
+    <section class="service-areas-section">
+      <div class="service-title">Our Service Areas</div>
+      <span class="service-title-underline" aria-hidden="true"></span>
+      <div class="service-map-box">
+        <img
+          class="service-map-img"
+          src="{% static 'images/MAP.jpg' %}"
+          alt="Map of our service areas in Ghana, Kenya and Somalia"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="service-caption">
+        We are actively working in various communities across Africa, with a
+        strong focus in some parts of Ghana, Kenya and Somalia. Our mission is
+        to expand our reach to more underserved areas.
+      </div>
+    </section>
+
+    <!-- OUR PARTNERS -->
+    <section class="partners" id="partners">
+      <div class="wrap">
+        <h2 class="partners-title">Partnership Highlights</h2>
+        <span class="partners-underline" aria-hidden="true"></span>
+
+        <div class="partner-logos">
+          <div class="partner-card">
+            <img
+              src="{% static 'images/QATAR CHARITY.jpg' %}"
+              alt="Qatar Charity Ghana Logo"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="partner-card">
+            <img
+              src="{% static 'images/download.jpeg' %}"
+              alt="JBC Charity Logo"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-dark">
+      <div class="footer-logo">
+        <a href="{% url 'home' %}">
+          <img
+            src="{% static 'images/imanJ.png' %}"
+            alt="Iman Jibril Foundation Logo"
+            class="signin-logo"
+          />
+        </a>
+      </div>
+
+      <div class="footer-container">
+        <div class="footer-column">
+          <h4>Contact Us</h4>
+          <p>
+            <i
+              class="fas fa-people-group"
+              style="font-size: 14px; color: #fff"
+            ></i>
+            Iman Jibril Foundation
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt" style="color: #fff"></i> Head
+            Office: Iris Street, Accra, Ghana
+          </p>
+          <p>
+            <i class="fas fa-phone" style="color: #fff"></i> Phone/WhatsApp:
+            +233 55 613 7874
+          </p>
+          <p>
+            <i class="fas fa-envelope" style="color: #fff"></i>
+            <a href="mailto:donate@theimangroup.com">donate@theimangroup.com</a>
+          </p>
+          <p>
+            <i class="fab fa-instagram" style="color: #fff"></i>
+            <a href="#" aria-label="Instagram">@imanjfoundation</a>
+          </p>
+          <p><em>An Initiative of Iman Jibril Foundation</em></p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Other Links</h4>
+          <ul>
+            <li><a href="mother">Mother Care Drive</a></li>
+            <li>
+              <a href="#feeding">Feeding Festival &amp; Birthday Drive</a>
+            </li>
+            <li><a href="{% url 'donate' %}">How You Can Help</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Stay Informed</h4>
+          <p>Join our email newsletter to learn more.</p>
+          <form
+            class="newsletter-form"
+            onsubmit="event.preventDefault(); alert('Thanks for subscribing!');"
+          >
+            <label class="sr-only" for="nl-email">Email</label>
+            <input
+              id="nl-email"
+              type="email"
+              placeholder="Enter your email"
+              required
+            />
+            <button type="submit">JOIN NOW</button>
+          </form>
+        </div>
+      </div>
+
+      <hr class="white-line" />
+      <div class="footer-bottom">
+        &copy; <span id="year"></span> Iman Jibril Foundation. All Rights
+        Reserved.
+      </div>
+    </footer>
+    <script>
+      // --- HERO: trigger on load and toggle on scroll ---
+      document.addEventListener("DOMContentLoaded", () => {
+        const heroContent = document.querySelector(".hero-content");
+        if (heroContent) {
+          heroContent.classList.add("h1-visible"); // animate in on page load
+          let lastY = window.pageYOffset;
+          window.addEventListener("scroll", () => {
+            const currentY = window.pageYOffset;
+            if (currentY > lastY) {
+              heroContent.classList.remove("h1-visible");
+              heroContent.classList.add("h1-hidden");
+            } else {
+              heroContent.classList.remove("h1-hidden");
+              heroContent.classList.add("h1-visible");
+            }
+            lastY = currentY;
+          });
+        }
+
+        // --- HERO SLIDESHOW ---
+        const heroSlides = document.querySelectorAll(".hero .slide");
+        if (heroSlides.length) {
+          let hIdx = 0; // first slide has .active in HTML
+          setInterval(() => {
+            heroSlides[hIdx].classList.remove("active");
+            hIdx = (hIdx + 1) % heroSlides.length;
+            heroSlides[hIdx].classList.add("active");
+          }, 10000);
+        }
+
+        // --- BUTTON HANDLERS (guarded) ---
+        const watchMore = document.querySelector(".watch-more");
+        const volunteerBtn = document.querySelector(".volunteer");
+        const donateBtn = document.querySelector(".donate");
+        if (watchMore)
+          watchMore.addEventListener("click", () => {
+            // example: scroll to a section
+            document
+              .querySelector(".vertical-carousel")
+              ?.scrollIntoView({ behavior: "smooth" });
+          });
+        if (volunteerBtn)
+          volunteerBtn.addEventListener("click", () => {
+            location.href = "/volunteer";
+          });
+        if (donateBtn)
+          donateBtn.addEventListener("click", () => {
+            location.href = "/donate";
+          });
+
+        // --- HORIZONTAL GALLERY (IDs: slider-track / slider-dots) ---
+        (function initHorizontalGallery() {
+          const gTrack = document.getElementById("slider-track");
+          const gSlides = Array.from(
+            document.querySelectorAll(".slider-slide")
+          );
+          const gPrev = document.getElementById("slider-prev");
+          const gNext = document.getElementById("slider-next");
+          const gDotsWrap = document.getElementById("slider-dots");
+          if (!gTrack || !gSlides.length || !gDotsWrap) return;
+
+          let gCurrent = 0,
+            gCount = gSlides.length;
+
+          function gRenderDots() {
+            gDotsWrap.innerHTML = "";
+            for (let i = 0; i < gCount; i++) {
+              const d = document.createElement("div");
+              d.className = "slider-dot" + (i === gCurrent ? " active" : "");
+              d.tabIndex = 0;
+              d.setAttribute("aria-label", `Go to slide ${i + 1}`);
+              d.onclick = () => gGoTo(i);
+              d.onkeydown = (e) => {
+                if (e.key === "Enter" || e.key === " ") gGoTo(i);
+              };
+              gDotsWrap.appendChild(d);
+            }
+          }
+          function gUpdate() {
+            const w = gSlides[0].offsetWidth + 16; // slide + margin
+            gTrack.style.transform = `translateX(${-gCurrent * w}px)`;
+            gRenderDots();
+            if (gPrev) gPrev.disabled = gCurrent === 0;
+            if (gNext) gNext.disabled = gCurrent === gCount - 1;
+          }
+          function gGoTo(i) {
+            gCurrent = Math.max(0, Math.min(gCount - 1, i));
+            gUpdate();
+          }
+
+          if (gPrev) gPrev.onclick = () => gGoTo(gCurrent - 1);
+          if (gNext) gNext.onclick = () => gGoTo(gCurrent + 1);
+
+          // Drag/Touch
+          let startX = 0,
+            dragX = 0,
+            dragging = false;
+          gTrack.addEventListener("mousedown", (e) => {
+            dragging = true;
+            startX = e.pageX;
+            gTrack.style.transition = "none";
+          });
+          window.addEventListener("mousemove", (e) => {
+            if (!dragging) return;
+            dragX = e.pageX - startX;
+            const w = gSlides[0].offsetWidth + 16;
+            gTrack.style.transform = `translateX(${-gCurrent * w + dragX}px)`;
+          });
+          window.addEventListener("mouseup", () => {
+            if (!dragging) return;
+            gTrack.style.transition = "";
+            if (dragX < -40 && gCurrent < gCount - 1) gGoTo(gCurrent + 1);
+            else if (dragX > 40 && gCurrent > 0) gGoTo(gCurrent - 1);
+            else gUpdate();
+            dragging = false;
+            dragX = 0;
+          });
+
+          gTrack.addEventListener(
+            "touchstart",
+            (e) => {
+              if (e.touches.length > 1) return;
+              dragging = true;
+              startX = e.touches[0].pageX;
+              gTrack.style.transition = "none";
+            },
+            { passive: true }
+          );
+          gTrack.addEventListener(
+            "touchmove",
+            (e) => {
+              if (!dragging) return;
+              dragX = e.touches[0].pageX - startX;
+              const w = gSlides[0].offsetWidth + 16;
+              gTrack.style.transform = `translateX(${-gCurrent * w + dragX}px)`;
+            },
+            { passive: false }
+          );
+          gTrack.addEventListener("touchend", () => {
+            gTrack.style.transition = "";
+            if (dragX < -40 && gCurrent < gCount - 1) gGoTo(gCurrent + 1);
+            else if (dragX > 40 && gCurrent > 0) gGoTo(gCurrent - 1);
+            else gUpdate();
+            dragging = false;
+            dragX = 0;
+          });
+
+          window.addEventListener("resize", gUpdate);
+          gRenderDots();
+          gUpdate();
+        })();
+
+        // --- VERTICAL CAROUSEL (drag, wheel, touch, keys, dots, video sync) ---
+        (function initVerticalCarousel() {
+          const vc = document.querySelector(".vertical-carousel");
+          const vTrack = document.querySelector(".carousel-container");
+          const vSlides = Array.from(
+            document.querySelectorAll(".carousel-slide")
+          );
+          const vDots = Array.from(document.querySelectorAll(".v-dots .dot"));
+          if (!vc || !vTrack || !vSlides.length) return;
+
+          let vCurrent = 0,
+            vTotal = vSlides.length;
+
+          function syncVideos() {
+            document.querySelectorAll(".carousel-video").forEach((v) => {
+              try {
+                v.pause();
+              } catch (e) {}
+            });
+            const active = vSlides[vCurrent].querySelector(".carousel-video");
+            if (active) {
+              const p = active.play();
+              if (p && typeof p.then === "function") p.catch(() => {});
+            }
+          }
+
+          function vUpdate() {
+            vTrack.style.transform = `translateY(-${vCurrent * 100}%)`;
+            vDots.forEach((d) =>
+              d.classList.toggle("active", Number(d.dataset.slide) === vCurrent)
+            );
+            syncVideos();
+          }
+
+          // dots
+          vDots.forEach((d) =>
+            d.addEventListener("click", () => {
+              vCurrent = Number(d.dataset.slide);
+              vUpdate();
+            })
+          );
+
+          // wheel (on the component)
+          let vLock = false;
+          vc.addEventListener(
+            "wheel",
+            (e) => {
+              e.preventDefault();
+              if (vLock) return;
+              vLock = true;
+              if (e.deltaY > 0 && vCurrent < vTotal - 1) vCurrent++;
+              else if (e.deltaY < 0 && vCurrent > 0) vCurrent--;
+              vUpdate();
+              setTimeout(() => (vLock = false), 500);
+            },
+            { passive: false }
+          );
+
+          // keyboard
+          window.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowDown" && vCurrent < vTotal - 1) {
+              vCurrent++;
+              vUpdate();
+            } else if (e.key === "ArrowUp" && vCurrent > 0) {
+              vCurrent--;
+              vUpdate();
+            }
+          });
+
+          // drag (pointer events)
+          let dragging = false,
+            startY = 0,
+            deltaY = 0;
+          const threshold = () => vc.clientHeight * 0.12;
+
+          vc.addEventListener("pointerdown", (e) => {
+            dragging = true;
+            startY = e.clientY;
+            deltaY = 0;
+            vTrack.classList.add("dragging");
+            vTrack.style.transition = "none";
+          });
+          vc.addEventListener(
+            "pointermove",
+            (e) => {
+              if (!dragging) return;
+              deltaY = e.clientY - startY;
+              const pct = (deltaY / vc.clientHeight) * 100;
+              vTrack.style.transform = `translateY(calc(-${
+                vCurrent * 100
+              }% + ${pct}%))`;
+              e.preventDefault();
+            },
+            { passive: false }
+          );
+          ["pointerup", "pointerleave", "pointercancel"].forEach((evt) =>
+            vc.addEventListener(evt, () => {
+              if (!dragging) return;
+              dragging = false;
+              if (Math.abs(deltaY) > threshold()) {
+                if (deltaY < 0 && vCurrent < vTotal - 1) vCurrent++;
+                if (deltaY > 0 && vCurrent > 0) vCurrent--;
+              }
+              vTrack.classList.remove("dragging");
+              vTrack.style.transition = "";
+              vUpdate();
+              deltaY = 0;
+            })
+          );
+
+          // touch fallback (older browsers)
+          let tStart = 0,
+            tDelta = 0;
+          vc.addEventListener(
+            "touchstart",
+            (e) => {
+              tStart = e.changedTouches[0].clientY;
+            },
+            { passive: true }
+          );
+          vc.addEventListener("touchend", (e) => {
+            tDelta = e.changedTouches[0].clientY - tStart;
+            if (Math.abs(tDelta) > 50) {
+              if (tDelta < 0 && vCurrent < vTotal - 1) vCurrent++;
+              if (tDelta > 0 && vCurrent > 0) vCurrent--;
+              vUpdate();
+            }
+          });
+
+          // init
+          vUpdate();
+        })();
+      });
+    </script>
+  </body>
+</html>
