@@ -1,0 +1,75 @@
+<!-- filepath: c:\Users\DELL\Desktop\IMAN-main\accounts\templates\accounts\cta_thankyou.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You</title>
+    <style>
+      body {
+        background: #f9fafb;
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .thankyou-card {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(18, 85, 15, 0.09);
+        padding: 40px 28px 32px 28px;
+        max-width: 400px;
+        width: 95vw;
+        text-align: center;
+      }
+      .thankyou-card img {
+        max-width: 100px;
+        margin-bottom: 18px;
+      }
+      .thankyou-card h2 {
+        color: #12550f;
+        margin-bottom: 10px;
+        font-size: 2rem;
+        font-weight: 700;
+      }
+      .thankyou-card p {
+        color: #333;
+        font-size: 1.1rem;
+        margin-bottom: 28px;
+      }
+      .back-home-btn {
+        display: inline-block;
+        background: #12550f;
+        color: #fff;
+        padding: 12px 32px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: background 0.2s;
+        box-shadow: 0 2px 8px rgba(18, 85, 15, 0.07);
+      }
+      .back-home-btn:hover {
+        background: #d0dd94;
+        color: #12550f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="thankyou-card">
+      <img
+        src="{% static 'images/imanj.png' %}"
+        alt="Iman Jibril Foundation Logo"
+      />
+      <h2>Thank you for reaching out!</h2>
+      <p>
+        Your message has been received.<br />
+        We appreciate your support and will get back to you if needed.
+      </p>
+      <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
+    </div>
+  </body>
+</html>

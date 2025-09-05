@@ -1792,6 +1792,7 @@
     </section>
 
     <!-- DONATE CTA -->
+
     <section class="donate-cta" id="donate-cta">
       <div class="wrap">
         <h2 class="cta-title">You Can Change a Life Today</h2>
@@ -1799,30 +1800,51 @@
         <p class="cta-sub">We accept:</p>
 
         <div class="accept-list" role="list">
-          <span class="accept-chip" role="listitem">
+          <a
+            href="{% url 'cta_form' %}"
+            class="accept-chip"
+            role="listitem"
+            style="text-decoration: none"
+          >
             <span class="chip-icon" aria-hidden="true">✦</span>
             Financial Donations (one-time or monthly)
-          </span>
-
-          <span class="accept-chip" role="listitem">
+          </a>
+          <a
+            href="{% url 'cta_form' %}"
+            class="accept-chip"
+            role="listitem"
+            style="text-decoration: none"
+          >
             <span class="chip-icon" aria-hidden="true">✦</span>
             In-Kind Support (school supplies, medical kits, hygiene items, tech)
-          </span>
-
-          <span class="accept-chip" role="listitem">
+          </a>
+          <a
+            href="{% url 'cta_form' %}"
+            class="accept-chip"
+            role="listitem"
+            style="text-decoration: none"
+          >
             <span class="chip-icon" aria-hidden="true">✦</span>
             Corporate Sponsorships
-          </span>
-
-          <span class="accept-chip" role="listitem">
+          </a>
+          <a
+            href="{% url 'cta_form' %}"
+            class="accept-chip"
+            role="listitem"
+            style="text-decoration: none"
+          >
             <span class="chip-icon" aria-hidden="true">✦</span>
             Partnerships in education, job creation, healthcare
-          </span>
-
-          <span class="accept-chip" role="listitem">
+          </a>
+          <a
+            href="{% url 'cta_form' %}"
+            class="accept-chip"
+            role="listitem"
+            style="text-decoration: none"
+          >
             <span class="chip-icon" aria-hidden="true">✦</span>
             Volunteers &amp; Advocates
-          </span>
+          </a>
         </div>
       </div>
     </section>

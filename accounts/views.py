@@ -10,9 +10,20 @@ from django.conf import settings
 import stripe
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
+from .forms import OtherDonationForm
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+def cta_form_view(request):
+    if request.method == 'POST':
+        form = OtherDonationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'accounts/cta_thankyou.html')
+    else:
+        form = OtherDonationForm()
+    return render(request, 'accounts/cta_form.html', {'form': form})
 
 
 @csrf_exempt

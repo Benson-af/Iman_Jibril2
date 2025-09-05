@@ -31,4 +31,24 @@ class Event(models.Model):
     image_url = models.URLField("Cloudinary Image URL", blank=True, null=True)
     def __str__(self):
         return self.name
+    
+
+
+class OtherDonation(models.Model):
+    CATEGORY_CHOICES = [
+        ('donate', 'Donate'),
+        ('volunteer', 'Volunteer'),
+        ('partner', 'Partner'),
+        ('sponsor', 'Sponsor'),
+        ('other', 'Other'),
+    ]
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    number = models.CharField(max_length=20)  # <-- Add this line
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='donate')  # <-- Add this line
+    comment = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.email})"
 

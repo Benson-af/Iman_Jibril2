@@ -19,6 +19,7 @@ urlpatterns = [
     path('volunteer/', views.volunteer_view, name='volunteer'),
     path('stripe-webhook/', views.stripe_webhook, name='stripe_webhook'),
     path('logout/', views.signout_view, name='logout'),
+    path('cta/', views.cta_form_view, name='cta_form'),
      path('', views.index, name='index'),  # <-- This line is required!
     # ... other url patterns ...
 ]

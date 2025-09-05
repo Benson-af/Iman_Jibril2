@@ -3,6 +3,7 @@ from .models import Volunteer, Donation, Event
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from .models import Volunteer
+from .models import OtherDonation
 
 @admin.register(Volunteer)
 class VolunteerAdmin(admin.ModelAdmin):
@@ -27,5 +28,10 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'date', 'location')
     search_fields = ('name', 'location')
     list_filter = ('date',)
+
+@admin.register(OtherDonation)
+class OtherDonationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'comment', 'submitted_at')
+    search_fields = ('name', 'email', 'comment')
     
 
