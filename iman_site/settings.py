@@ -88,9 +88,9 @@ JAZZMIN_SETTINGS = {
     "site_title": "IMAN Jibril Foundation Admin",
     "site_header": "IMAN Jibril Foundation",
     "site_brand": "IMAN Jibril Foundation",
-    "site_logo": "images/imanj.png",  # Path is relative to your static files
-    "login_logo": "images/imanj.png",
-    "login_logo_dark": "images/imanj.png",
+    "site_logo": "images/imanJ.png",  # Path is relative to your static files
+    "login_logo": "images/imanJ.png",
+    "login_logo_dark": "images/imanJ.png",
     # ... you can add more Jazzmin settings here ...
 }
 ROOT_URLCONF = 'iman_site.urls'
