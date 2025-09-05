@@ -29,7 +29,7 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = ['iman-qjgv.onrender.com', 'iman-jibril2.onrender.com'
-                ,'localhost', '127.0.0.1']
+  ,'localhost', '127.0.0.1', 'imanjibrilfoundation.org','www.imanjibrilfoundation.org',]
 
 # Application definition
 
