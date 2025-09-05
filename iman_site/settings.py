@@ -36,8 +36,6 @@ ALLOWED_HOSTS = ['iman-qjgv.onrender.com', 'iman-jibril2.onrender.com'
 INSTALLED_APPS = [
     'jazzmin',  # <-- Correct place for jazzmin
     'django.contrib.admin',
-    'cloudinary',
-    'cloudinary_storage',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -46,14 +44,24 @@ INSTALLED_APPS = [
     'accounts',
 ]
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-}
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
+#CLOUDINARY_STORAGE = {
+#    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+#    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+#    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+#}
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
@@ -157,11 +165,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 # Default primary key field type
