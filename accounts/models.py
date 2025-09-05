@@ -31,3 +31,4 @@ class Event(models.Model):
     image_url = models.URLField("Cloudinary Image URL", blank=True, null=True)
     def __str__(self):
         return self.name
+
