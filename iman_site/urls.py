@@ -10,7 +10,7 @@ def create_temp_superuser(request):
     User = get_user_model()
     if not User.objects.filter(is_superuser=True).exists():
         User.objects.create_superuser('admin', 'admin@example.com', 'adminpassword123')
-        return HttpResponse("Superuser created. Username: admin, Password: adminpassword123")
+        return HttpResponse("Superuser created. Username: BensonKwabena, Password: NGO@ADMIN123")
     return HttpResponse("Superuser already exists.")
 
 
