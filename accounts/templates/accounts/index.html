@@ -1007,7 +1007,7 @@
       }
 
       .carousel-slide:nth-child(4) {
-        background-color: #e09a29; /* Slide 4: Yellow */
+        background-color: #830a0aff; /* Slide 4: Yellow */
       }
 
       .carousel-slide:nth-child(5) {
@@ -1122,7 +1122,7 @@
           flex-direction: column-reverse;
           gap: 14px;
           padding: 20px;
-          margin-top: 20px;
+          margin-top: 50px;
         }
         fa.fas {
           font-size: 0.5rem;
@@ -1620,6 +1620,14 @@
               decoding="async"
             />
           </div>
+          <div class="slider-slide">
+            <img
+              src="{% static 'images/IMG13.jpg' %}"
+              alt="About Us 2"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
         <button
           class="slider-arrow right"
@@ -1708,6 +1716,7 @@
     <!-- VERTICAL CAROUSEL -->
     <section class="vertical-carousel" id="impact" aria-label="Impact Stories">
       <div class="carousel-container" id="v-track">
+        <!-- Slide 1 -->
         <div class="carousel-slide">
           <div class="carousel-content">
             <div class="carousel-image">
@@ -1724,8 +1733,8 @@
                   class="fas fa-utensils"
                   aria-hidden="true"
                   style="font-size: 2.5rem; margin-right: 20px"
-                ></i
-                ><span><u>Feeding Festival &amp; Birthday Drive</u></span>
+                ></i>
+                <span><u>Feeding Festival &amp; Birthday Drive</u></span>
               </h2>
               <p>
                 On Iman’s 1st birthday, over 800 children in Asuboi were fed,
@@ -1735,7 +1744,7 @@
             </div>
           </div>
         </div>
-
+        <!-- Slide 2 -->
         <div class="carousel-slide">
           <div class="carousel-content">
             <div class="carousel-image">
@@ -1749,8 +1758,8 @@
                   class="fas fa-water"
                   aria-hidden="true"
                   style="font-size: 2.5rem; margin-right: 20px"
-                ></i
-                ><u>Partnership for Change</u>
+                ></i>
+                <u>Partnership for Change</u>
               </h2>
               <p>
                 Through our partnership with Qatar Charity Ghana and JBC
@@ -1760,7 +1769,33 @@
             </div>
           </div>
         </div>
-
+        <!-- Slide 3 -->
+        <div class="carousel-slide">
+          <div class="carousel-content">
+            <div class="carousel-image">
+              <img
+                src="{% static 'images/MOTHERCARE(1).jpg' %}"
+                alt="Youth Empowerment"
+              />
+            </div>
+            <div class="carousel-text">
+              <h2>
+                <i
+                  class="fas fa-ribbon"
+                  aria-hidden="true"
+                  style="font-size: 2.5rem; margin-right: 20px"
+                ></i>
+                <u>Women Empowerment</u>
+              </h2>
+              <p>
+                In collaboration with local health organizations, we have
+                provided free medical checkups, medicine, and health education
+                to underserved communities.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 4 (NEW) -->
         <div class="carousel-slide">
           <div class="carousel-content">
             <div class="carousel-image">
@@ -1774,16 +1809,43 @@
             <div class="carousel-text">
               <h2>
                 <i
-                  class="fas fa-ribbon"
+                  class="fas fa-stethoscope"
                   aria-hidden="true"
                   style="font-size: 2.5rem; margin-right: 20px"
-                ></i
-                ><u>Women Empowerment</u>
+                ></i>
+                <u>Health Outreach</u>
               </h2>
               <p>
-                In collaboration with local health organizations, we have
-                provided free medical checkups, medicine, and health education
-                to underserved communities.
+                We organize regular health outreaches, providing free medical
+                checkups, medicines, and health education to underserved
+                communities.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 5 (NEW) -->
+        <div class="carousel-slide">
+          <div class="carousel-content">
+            <div class="carousel-image">
+              <video class="carousel-video" autoplay muted loop playsinline>
+                <source
+                  src="{% static 'videos/Education.mp4' %}"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="carousel-text">
+              <h2>
+                <i
+                  class="fas fa-users"
+                  aria-hidden="true"
+                  style="font-size: 2.5rem; margin-right: 20px"
+                ></i>
+                <u>Education</u>
+              </h2>
+              <p>
+                Our education programs provide mentorship, skills training, and
+                leadership opportunities for young people to thrive.
               </p>
             </div>
           </div>
